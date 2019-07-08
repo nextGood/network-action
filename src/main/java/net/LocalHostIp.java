@@ -9,7 +9,7 @@ import java.net.UnknownHostException;
  * @author nextGood
  * @date 2019/7/1
  */
-public class OReillyByName {
+public class LocalHostIp {
     public static void main(String[] args) {
         try {
             InetAddress address1 = InetAddress.getByName("www.oreilly.com");
@@ -26,7 +26,6 @@ public class OReillyByName {
             byte[] ipAddresses = new byte[]{(byte) 163, (byte) 177, (byte) 151, 109};
             System.out.println(InetAddress.getByAddress("www.baidu.com", ipAddresses));
             System.out.println(InetAddress.getLocalHost().getHostName());
-
 
             SecurityManager sm = new SecurityManager();
             sm.checkConnect("www.baidu.com", 8080);
