@@ -9,9 +9,9 @@ import java.net.*;
  * @author nextGood
  * @date 2019/7/21
  */
-public class DayTimeUDPClient {
-    private static final Integer PORT = 80;
-    private static final String HOST_NAME = "time.nist.gov";
+public class DayTimeUdpClient {
+    private static final Integer PORT = 1688;
+    private static final String HOST_NAME = "127.0.0.1";
 
     public static void main(String[] args) {
         try {
