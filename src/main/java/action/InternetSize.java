@@ -1,4 +1,4 @@
-package net;
+package action;
 
 import java.io.IOException;
 import java.net.MalformedURLException;

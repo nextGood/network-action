@@ -1,4 +1,4 @@
-package http;
+package blog.http;
 
 import java.io.*;
 import java.net.InetSocketAddress;

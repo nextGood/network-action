@@ -1,4 +1,4 @@
-package net;
+package action;
 
 import java.io.FileOutputStream;
 import java.io.IOException;

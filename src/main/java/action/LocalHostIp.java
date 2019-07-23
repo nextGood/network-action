@@ -1,4 +1,4 @@
-package net;
+package action;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
