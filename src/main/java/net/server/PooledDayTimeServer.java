@@ -5,33 +5,36 @@ import java.io.OutputStreamWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Date;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
- * 多线程时间服务器
+ * 线程池时间服务器
  *
  * @author nextGood
  * @date 2019/7/25
  */
-public class MultithreaderDaytimeServer {
+public class PooledDayTimeServer {
     private static final Integer PORT = 13;
 
     public static void main(String[] args) {
+        ThreadPoolExecutor poolExecutor = new ThreadPoolExecutor(5, 50, 0L,
+                TimeUnit.MILLISECONDS, new LinkedBlockingQueue<Runnable>(1024));
         ServerSocket serverSocket = null;
         try {
             serverSocket = new ServerSocket(PORT);
             Socket socket = serverSocket.accept();
-            // 每一个连接生成一个新线程，大量几乎同时的入站连接可能导致它生成极大数量的线程
-            // 最终，Java虚拟机会耗尽内存而崩溃
-            new DayTimeThread(socket).start();
+            poolExecutor.submit(new TimeServerThread(socket));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private static class DayTimeThread extends Thread {
+    private static class TimeServerThread implements Runnable {
         private Socket socket;
 
-        public DayTimeThread(Socket socket) {
+        public TimeServerThread(Socket socket) {
             this.socket = socket;
         }
 
